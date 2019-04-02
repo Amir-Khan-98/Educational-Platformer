@@ -94,8 +94,18 @@ public class Player2 : MonoBehaviour
         }
         if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
-            myRigidBody.velocity += jumpVelocityToAdd;
+
+            if (myRigidBody.velocity.y < 0)
+            {
+                Vector2 jumpVelocityToChange = new Vector2(myRigidBody.velocity.x, jumpSpeed);
+                myRigidBody.velocity = jumpVelocityToChange;
+            }
+            else
+            {
+                Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+                myRigidBody.velocity += jumpVelocityToAdd;
+            }
+            
         }
         if (myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
         {

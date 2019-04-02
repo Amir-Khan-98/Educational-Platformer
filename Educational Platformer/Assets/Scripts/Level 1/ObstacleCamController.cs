@@ -51,16 +51,13 @@ public class ObstacleCamController : MonoBehaviour
         if (gameObject.name == "ObstacleCamOn")
         {
             cameraOn = true;
-            //cam.m_Lens.OrthographicSize = obstacleSize;
         }
         else if (gameObject.name == "ObstacleCamOn2")
         {
-            //cam.m_Lens.OrthographicSize = obstacleSize + 10f;
             cameraOn2 = true;
         }
         else if (gameObject.name == "ObstacleCamOn3")
         {
-            //cam.m_Lens.OrthographicSize = obstacleSize + 10f;
             cameraOn3 = true;
         }
         else if (gameObject.name == "ObstacleCamOff")
@@ -68,7 +65,6 @@ public class ObstacleCamController : MonoBehaviour
             cameraOn = false;
             cameraOn2 = false;
             cameraOn3 = false;
-            //cam.m_Lens.OrthographicSize = originalSize;
         }
     }
     private void ChangeCamSize()
@@ -85,14 +81,12 @@ public class ObstacleCamController : MonoBehaviour
         {
             cam.m_Lens.OrthographicSize += 0.2f;
         }
-        
     }
     private void ChangeCamSizeSmall()
     {
         if ((!cameraOn && !cameraOn2 && !cameraOn3) && cam.m_Lens.OrthographicSize > originalSize)
         {
             cam.m_Lens.OrthographicSize -= 0.05f;
-            Debug.Log("Should decrease");
         }
     }
 }

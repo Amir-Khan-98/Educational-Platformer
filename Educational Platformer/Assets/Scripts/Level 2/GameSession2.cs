@@ -121,11 +121,9 @@ public class GameSession2 : MonoBehaviour
         if (playerLives > 1)
         {
             TakeLife();
-            //FindObjectOfType<MovingPlatformController>().moving = false;
         }
         else
         {
-            //ResetGameSession();
             EndLevel();
         }
     }

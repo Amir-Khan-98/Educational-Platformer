@@ -27,13 +27,11 @@ public class MovingPlatformController : MonoBehaviour
         if (moving)
         {
             platform.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,7f);
-            //Debug.Log("should be true");
         }
         else
         {
             platform.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         }
-        //Debug.Log(moving);
     }
     public void SetMoving()
     {

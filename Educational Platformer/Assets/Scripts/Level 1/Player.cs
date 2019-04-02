@@ -88,17 +88,29 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
+        if (!myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) 
+            && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) 
+            && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
         {
             myAnimator.SetBool("Jumping", true);
             return;
         }
         if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
-            myRigidBody.velocity += jumpVelocityToAdd;
+            if (myRigidBody.velocity.y < 0)
+            {
+                Vector2 jumpVelocityToChange = new Vector2(myRigidBody.velocity.x, jumpSpeed);
+                myRigidBody.velocity = jumpVelocityToChange;
+            }
+            else
+            {
+                Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+                myRigidBody.velocity += jumpVelocityToAdd;
+            }
         }
-        if (myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
+        if (myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) 
+            || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) 
+            || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
         {
             myAnimator.SetBool("Jumping", false);
         }
@@ -108,7 +120,8 @@ public class Player : MonoBehaviour
     {
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
-            if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) && FindObjectOfType<PreventDeath>().GetBool())
+            if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) 
+                && FindObjectOfType<PreventDeath>().GetBool())
             {
                 return;
             }
