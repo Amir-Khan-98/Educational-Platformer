@@ -131,9 +131,22 @@ public class InGameMenuController : MonoBehaviour
         {
             Destroy(FindObjectOfType<GameSession>().gameObject);
         }
-        
-        
-        
     }
+    public void GoToJournal()
+    {
 
+        SceneManager.LoadScene(2);
+        Time.timeScale = 1f;
+        Resume();
+        //FindObjectOfType<GameSession>().ResetGameSession();
+        int numGameSessions = FindObjectsOfType<GameSession2>().Length;
+        if (numGameSessions > 0)
+        {
+            Destroy(FindObjectOfType<GameSession2>().gameObject);
+        }
+        else
+        {
+            Destroy(FindObjectOfType<GameSession>().gameObject);
+        }
+    }
 }
