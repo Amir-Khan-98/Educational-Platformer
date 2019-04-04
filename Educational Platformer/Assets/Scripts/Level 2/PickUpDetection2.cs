@@ -18,29 +18,24 @@ public class PickUpDetection2 : MonoBehaviour
         if (gameObject.CompareTag("Coin"))
         {
             FindObjectOfType<GameSession2>().AddScore(50);
+            FindObjectOfType<CoinSFX>().playCoinSFX();
             Destroy(gameObject);
         }
         else if (gameObject.name == interactPrompt.name && !interactCoolant)
         {
             FindObjectOfType<InGameMenuController>().JournalPause(gameObject);
             interactCoolant = true;
-            // Destroy(gameObject);
         }
         else if (gameObject.name == nuclearProtectPrompt.name && !nuclearProtect)
         {
             FindObjectOfType<InGameMenuController>().JournalPause(gameObject);
             nuclearProtect = true;
-            // Destroy(gameObject);
         }
         else if (gameObject.name == moderatorPrompt.name && !moderator)
         {
             FindObjectOfType<InGameMenuController>().JournalPause(gameObject);
             moderator = true;
         }
-
-        // FindObjectOfType<GameSession>().AddRods(1);
-        // Destroy(gameObject);
-        //AudioSource.PlayClipAtPoint(coinPickUpSFX, Camera.main.transform.position);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -50,9 +45,7 @@ public class PickUpDetection2 : MonoBehaviour
             {
                 FindObjectOfType<GameSession2>().ActivateSwitch(gameObject);
             }
-            //Debug.Log("chewking switch");
         }
-
     }
 
 

@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = myRigidBody.gravityScale;
-        //player.transform.Find("RadioactiveProtection").gameObject.SetActive(FindObjectOfType<GameSession>().hazmatSuitObtained);
         if (!FindObjectOfType<GameSession>().firstSpawn)
         {
             
@@ -79,11 +78,6 @@ public class Player : MonoBehaviour
         myRigidBody.velocity = climbVelocity;
         myRigidBody.gravityScale = 0f;
         myAnimator.SetBool("ClimbLadder", true);
-
-        //bool playerHasVerticalSpeed = Mathf.Abs(myRigidBody.velocity.y) > Mathf.Epsilon;
-        //myAnimator.SetBool("climb",playerHasVerticalSpeed);
-
-
     }
 
     private void Jump()

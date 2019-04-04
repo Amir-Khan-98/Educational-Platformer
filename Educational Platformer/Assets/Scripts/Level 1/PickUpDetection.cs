@@ -12,10 +12,11 @@ public class PickUpDetection : MonoBehaviour
 
     public GameObject moderatorPrompt;
     bool moderator = false;
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //AudioSource.PlayClipAtPoint(coinPickUpSFX, Camera.main.transform.position);
+        
         //GameSession.score += 50;
 
         if (gameObject.CompareTag("NRod"))
@@ -44,6 +45,7 @@ public class PickUpDetection : MonoBehaviour
         else if (gameObject.CompareTag("Coin"))
         {
             FindObjectOfType<GameSession>().AddScore(50);
+            FindObjectOfType<CoinSFX>().playCoinSFX();
             Destroy(gameObject);
         }
         else if (gameObject.CompareTag("HazmatSuit"))
@@ -55,23 +57,17 @@ public class PickUpDetection : MonoBehaviour
         {
             FindObjectOfType<InGameMenuController>().JournalPause(gameObject);
             interactCoolant = true;
-           // Destroy(gameObject);
         }
         else if (gameObject.name == nuclearProtectPrompt.name && !nuclearProtect)
         {
             FindObjectOfType<InGameMenuController>().JournalPause(gameObject);
             nuclearProtect = true;
-            // Destroy(gameObject);
         }
         else if (gameObject.name == moderatorPrompt.name && !moderator)
         {
             FindObjectOfType<InGameMenuController>().JournalPause(gameObject);
             moderator = true;
         }
-
-        // FindObjectOfType<GameSession>().AddRods(1);
-        // Destroy(gameObject);
-
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -81,7 +77,6 @@ public class PickUpDetection : MonoBehaviour
             {
                 FindObjectOfType<GameSession>().ActivateSwitch(gameObject);
             }
-            //Debug.Log("chewking switch");
         }
         
     }

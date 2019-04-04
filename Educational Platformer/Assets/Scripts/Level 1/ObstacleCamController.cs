@@ -23,19 +23,6 @@ public class ObstacleCamController : MonoBehaviour
     
     void Update()
     {
-        /*
-        if (cameraOn && cam.m_Lens.OrthographicSize < obstacleSize)
-        {
-            cam.m_Lens.OrthographicSize =10;
-            Debug.Log("Supposed to increase size" + cameraOn);
-        }
-        else if (!cameraOn && cam.m_Lens.OrthographicSize > originalSize)
-        {
-            cam.m_Lens.OrthographicSize -= 0.2f;
-            Debug.Log("Downnnnnnnnnnnnnnnnnnnnnnn" + cameraOn);
-        }
-        */
-        
         if (cameraOn || cameraOn2 || cameraOn3)
         {
             ChangeCamSize();

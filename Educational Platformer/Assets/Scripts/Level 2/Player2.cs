@@ -34,7 +34,6 @@ public class Player2 : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = myRigidBody.gravityScale;
-        //player.transform.Find("RadioactiveProtection").gameObject.SetActive(FindObjectOfType<GameSession>().hazmatSuitObtained);
         if (!FindObjectOfType<GameSession2>().firstSpawn)
         {
 
@@ -78,21 +77,19 @@ public class Player2 : MonoBehaviour
         myRigidBody.velocity = climbVelocity;
         myRigidBody.gravityScale = 0f;
         myAnimator.SetBool("ClimbLadder", true);
-
-        //bool playerHasVerticalSpeed = Mathf.Abs(myRigidBody.velocity.y) > Mathf.Epsilon;
-        //myAnimator.SetBool("climb",playerHasVerticalSpeed);
-
-
     }
 
     private void Jump()
     {
-        if (!myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
+        if (!myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) 
+            && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) 
+            && !myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
         {
             myAnimator.SetBool("Jumping", true);
             return;
         }
-        if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow))
+        if (CrossPlatformInputManager.GetButtonDown("Jump") 
+            || Input.GetKeyDown(KeyCode.UpArrow))
         {
 
             if (myRigidBody.velocity.y < 0)
@@ -107,7 +104,9 @@ public class Player2 : MonoBehaviour
             }
             
         }
-        if (myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
+        if (myFeet.IsTouchingLayers(LayerMask.GetMask("Ground")) 
+            || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")) 
+            || myBodyCollider.IsTouchingLayers(LayerMask.GetMask("LaserObs")))
         {
             myAnimator.SetBool("Jumping", false);
         }
@@ -117,7 +116,8 @@ public class Player2 : MonoBehaviour
     {
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
-            if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) && FindObjectOfType<PreventDeath>().GetBool())
+            if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) 
+                && FindObjectOfType<PreventDeath>().GetBool())
             {
                 return;
             }
